@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crave Kitchen Foods</title>
+</head>
+<body style="margin:0; padding:0;">
+    <div style="position:relative; text-align:center; color:white; margin:0; width:100%;">
+    <img src="{{ url_for('static', filename='images/outside.jpg') }}" style="width:100%; height:600px; object-fit:cover; border-radius:0 0 20px 20px; display:block;">
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); border-radius:0 0 20px 20px; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; box-sizing:border-box;">
+        <h1 style="font-size:50px; margin:0;">Hungry?</h1>
+        <h1 style="font-size:50px; color:#D62828; margin:10px 0;">We've Got You</h1>
+        <p style="font-size:22px; margin-bottom:20px;">Delicious food, delivered fast!</p>
+        <a href="/menu" style="background-color:#D62828; color:white; padding:15px 40px; font-size:22px; text-decoration:none; border-radius:8px;">View Menu</a>
+    </div>
+</div>
+
+<hr>
+
+<div style="padding:20px;">
+    <form method="GET" action="/menu" style="width:100%;">
+        <input type="text" name="search" placeholder="Search for jollof, drinks, snacks..." style="font-size:20px; width:100%; padding:14px; border:2px solid #D62828; border-radius:10px; box-sizing:border-box;">
+        <button type="submit" style="background-color:#D62828; color:white; border:none; padding:14px 20px; border-radius:10px; font-size:18px;">Search</button>
+    
+    </form>
+</div>
+   <div style="padding:30px 20px;">
+    <h2 style="font-size:32px; margin-bottom:5px;">What are you craving today?</h2>
+    <p style="font-size:18px; color:#666; margin-top:0;">Pick a category and we'll take care of the rest</p>
+
+    <div style="display:flex; overflow-x:auto; gap:15px; padding:15px 0;">
+        <a href="/menu?category=Meals" style="text-decoration:none; color:#333; text-align:center; min-width:100px;">
+            <div style="background-color:#fdecea; border-radius:16px; width:80px; height:80px; display:flex; align-items:center; justify-content:center; font-size:36px; margin:auto;">🍛</div>
+            <p style="font-size:16px; margin-top:8px;">Meals</p>
+        </a>
+
+        <a href="/menu?category=Drinks" style="text-decoration:none; color:#333; text-align:center; min-width:100px;">
+            <div style="background-color:#e8f4fd; border-radius:16px; width:80px; height:80px; display:flex; align-items:center; justify-content:center; font-size:36px; margin:auto;">🥤</div>
+            <p style="font-size:16px; margin-top:8px;">Drinks</p>
+        </a>
+
+        <a href="/menu?category=Snacks" style="text-decoration:none; color:#333; text-align:center; min-width:100px;">
+            <div style="background-color:#fff4e0; border-radius:16px; width:80px; height:80px; display:flex; align-items:center; justify-content:center; font-size:36px; margin:auto;">🍟</div>
+            <p style="font-size:16px; margin-top:8px;">Snacks</p>
+        </a>
+    </div>
+</div>
+
+<div style="padding:30px 20px; background-color:#fdecea; text-align:center;">
+    <h2 style="font-size:30px; margin-bottom:10px;">About Crave Kitchen</h2>
+    <p style="font-size:18px; color:#444; max-width:600px; margin:auto; line-height:1.6;">
+        At Crave Kitchen, we bring you delicious homemade meals, refreshing drinks, and tasty snacks — made fresh and delivered fast. Whether you're craving a hearty plate of jollof rice or a quick snack, we've got you covered.
+    </p>
+</div>
+
+<div style="padding:20px;">
+    <h2 style="font-size:32px; margin-bottom:5px;">🔥 Popular Right Now</h2>
+    <p style="font-size:18px; color:#666; margin-top:0;">Our most-loved dishes</p>
+
+    <div style="display:flex; overflow-x:auto; gap:15px; padding:15px 0;">
+        {% for food in popular_foods %}
+        <a href="/order/{{ food['id'] }}" style="text-decoration:none; color:#333; min-width:220px;">
+            <div style="border-radius:16px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.15); border:1px solid #eee;">
+                {% if food['image'] %}
+                <img src="{{ url_for('static', filename='images/' + food['image']) }}" style="width:100%; height:150px; object-fit:cover;">
+                {% endif %}
+                <div style="padding:10px;">
+                    <p style="font-size:18px; font-weight:bold; margin:0;">{{ food['name'] }}</p>
+                    <p style="font-size:16px; color:#D62828; margin:5px 0 0;">₦{{ "{:,.0f}".format(food['price']) }}</p>
+                    <p style="font-size:14px; color:white; background-color:#D62828; padding:6px 10px; border-radius:6px; margin:10px 0 0; text-align:center;">Order Now →</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+<div style="padding:30px 20px; background-color:#fff5f5;">
+    <p style="font-size:16px; color:#D62828; font-weight:bold; text-align:center; margin-bottom:5px;">TESTIMONIALS</p>
+    <h2 style="font-size:30px; text-align:center; margin-top:0;">What Our Customers Say</h2>
+
+    <div style="display:flex; overflow-x:auto; gap:20px; padding:20px 0;">
+        <div style="background-color:white; border-radius:16px; padding:20px; min-width:260px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            <p style="color:#D62828; font-size:20px; margin:0 0 10px;">⭐⭐⭐⭐⭐</p>
+            <p style="font-size:16px; font-style:italic; color:#333;">"Best jollof rice I've had delivered! Fast and fresh every time."</p>
+            <p style="font-size:15px; font-weight:bold; margin-top:15px; margin-bottom:0;">— Amaka O.</p>
+            <p style="font-size:14px; color:#777; margin-top:2px;">Lagos</p>
+        </div>
+
+        <div style="background-color:white; border-radius:16px; padding:20px; min-width:260px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            <p style="color:#D62828; font-size:20px; margin:0 0 10px;">⭐⭐⭐⭐⭐</p>
+            <p style="font-size:16px; font-style:italic; color:#333;">"Ordering was so easy and the food arrived hot. Will definitely order again!"</p>
+            <p style="font-size:15px; font-weight:bold; margin-top:15px; margin-bottom:0;">— David E.</p>
+            <p style="font-size:14px; color:#777; margin-top:2px;">Ikeja</p>
+        </div>
+
+        <div style="background-color:white; border-radius:16px; padding:20px; min-width:260px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            <p style="color:#D62828; font-size:20px; margin:0 0 10px;">⭐⭐⭐⭐⭐</p>
+            <p style="font-size:16px; font-style:italic; color:#333;">"Crave Kitchen never disappoints. Great taste, great service!"</p>
+            <p style="font-size:15px; font-weight:bold; margin-top:15px; margin-bottom:0;">— Blessing A.</p>
+            <p style="font-size:14px; color:#777; margin-top:2px;">Surulere</p>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+      </html>
