@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders - Crave Kitchen</title>
+</head>
+<body style="margin:0; font-family:sans-serif;">
+
+    <h1 style="text-align:center; font-size:32px; margin:25px 0 10px;">All Orders</h1>
+    <div style="display:flex; justify-content:center; gap:20px; font-size:16px; margin-bottom:20px;">
+        <a href="/" style="color:#D62828; text-decoration:none;">Home</a>
+        <a href="/menu" style="color:#D62828; text-decoration:none;">Menu</a>
+    </div>
+
+    <hr style="margin:0 0 20px;">
+
+    {% if orders %}
+        <div style="display:flex; justify-content:space-between; padding:0 20px 15px; font-size:16px; color:#555;">
+            <p style="margin:0;">Total Orders: <strong>{{ orders|length }}</strong></p>
+            <p style="margin:0; color:#D62828;">Revenue: <strong>₦{{ "{:,.0f}".format(total_revenue) }}</strong></p>
+        </div>
+
+        {% for order in orders %}
+        <div style="display:flex; gap:15px; padding:15px; border-bottom:1px solid #eee;">
+            {% if order['image'] %}
+            <img src="{{ url_for('static', filename='images/' + order['image']) }}" style="width:90px; height:90px; object-fit:cover; border-radius:12px; flex-shrink:0;">
+            {% endif %}
+            <div style="flex:1;">
+    <div style="max-width:250px; margin-left:auto; text-align:left;">
+        <p style="font-size:17px; font-weight:bold; margin:0 0 6px;">Order #{{ order['id'] }} — {{ order['food_name'] }} x {{ order['quantity'] }}</p>
+        <p style="font-size:14px; color:#555; margin:2px 0;">Customer: {{ order['customer_name'] }}</p>
+        <p style="font-size:14px; color:#555; margin:2px 0;">Phone: {{ order['phone'] }}</p>
+        <p style="font-size:14px; color:#555; margin:2px 0;">Street: {{ order['street'] }}</p>
+        <p style="font-size:14px; color:#555; margin:2px 0;">Landmark: {{ order['landmark'] }}</p>
+        <p style="font-size:14px; color:#555; margin:2px 0;">City: {{ order['city'] }}</p>
+        {% if order['payer_bank'] %}
+        <p style="font-size:14px; color:#555; margin:2px 0;">Paid via: {{ order['payer_bank'] }}</p>
+        {% endif %}
+        <p style="font-size:16px; color:#D62828; font-weight:bold; margin:8px 0 4px;">Total: ₦{{ "{:,.0f}".format(order['total_price']) }}</p>
+        <p style="font-size:14px; margin:4px 0 10px;">
+            Status:
+            {% if order['status'] == 'Paid' %}
+                <span style="color:green; font-weight:bold;">✅ Paid</span>
+            {% else %}
+                <span style="color:orange; font-weight:bold;">⏳ Pending</span>
+            {% endif %}
+        </p>
+        <div style="display:flex; gap:10px;">
+            {% if order['status'] != 'Paid' %}
+            <a href="/mark-paid/{{ order['id'] }}" style="background-color:#D62828; color:white; text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px;">Mark as Paid</a>
+            {% endif %}
+            <a href="/delete-order/{{ order['id'] }}" style="background-color:white; color:#999; border:1px solid #ccc; text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px;">Delete</a>
+        </div>
+    </div>
+</div>
+</div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center; font-size:16px; color:#666;">No orders yet.</p>
+    {% endif %}
+
+<footer style="margin:40px 20px 20px; padding:25px 20px; background-color:white; border:2px solid #D62828; border-radius:16px; text-align:center;">
+    <h3 style="color:#D62828; font-size:20px; margin-bottom:20px;">Stay Connected</h3>
+
+    <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:15px;">
+        <a href="https://wa.me/2347044090654" style="background-color:white; color:#333; border:1px solid #ccc; text-decoration:none; padding:12px 25px; border-radius:8px; font-size:16px; display:flex; align-items:center; gap:8px;">
+            📱 WhatsApp
+        </a>
+        <a href="https://tiktok.com/@Kennethbuilds1" target="_blank" style="background-color:white; color:#333; border:1px solid #ccc; text-decoration:none; padding:12px 25px; border-radius:8px; font-size:16px; display:flex; align-items:center; gap:8px;">
+            🎥 TikTok
+        </a>
+    </div>
+
+    <p style="font-size:14px; color:#999;">Powered by CodeWithKenneth</p>
+</footer>
+
+</body>
+              </html>
