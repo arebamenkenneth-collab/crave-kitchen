@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Food - Crave Kitchen</title>
+</head>
+<body style="margin:0; font-family:sans-serif;">
+
+    <h1 style="text-align:center; font-size:32px; margin:25px 0 10px;">Edit Food</h1>
+    <p style="text-align:center; margin-bottom:20px;"><a href="/menu" style="color:#D62828; text-decoration:none; font-size:15px;">← Back to Menu</a></p>
+
+    <hr style="margin:0 0 20px;">
+
+    <form method="POST" style="width:95%; max-width:600px; margin:auto;">
+        <label style="font-size:15px; color:#555;">Food Name</label><br>
+        <input type="text" name="name" value="{{ food['name'] }}" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Price (₦)</label><br>
+        <input type="number" step="0.01" name="price" value="{{ food['price'] }}" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Category</label><br>
+        <input type="text" name="category" value="{{ food['category'] }}" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Description</label><br>
+        <textarea name="description" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box; height:80px;">{{ food['description'] }}</textarea>
+
+        <label style="font-size:15px; color:#555;">Image Filename</label><br>
+        <input type="text" name="image" value="{{ food['image'] }}" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:25px; box-sizing:border-box;">
+
+        <button type="submit" style="width:100%; padding:14px; background-color:#D62828; color:white; border:none; border-radius:8px; font-size:17px; font-weight:bold;">Save Changes</button>
+    </form>
+
+</body>
+</html>
