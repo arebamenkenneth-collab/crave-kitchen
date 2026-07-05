@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Food - Crave Kitchen</title>
+</head>
+<body style="margin:0; font-family:sans-serif;">
+
+    <h1 style="text-align:center; font-size:32px; margin:25px 0 10px;">Add a New Food</h1>
+    <div style="display:flex; justify-content:center; gap:20px; font-size:16px; margin-bottom:20px;">
+        <a href="/" style="color:#D62828; text-decoration:none;">Home</a>
+        <a href="/menu" style="color:#D62828; text-decoration:none;">Menu</a>
+    </div>
+
+    <hr style="margin:0 0 20px;">
+
+    <form method="POST" style="display:block; width:90%; max-width:400px; margin:auto;">
+        <label style="font-size:15px; color:#555;">Food Name</label><br>
+        <input type="text" name="name" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Price (₦)</label><br>
+        <input type="number" step="0.01" name="price" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Category</label><br>
+        <input type="text" name="category" placeholder="e.g. Meals, Drinks, Snacks" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Description</label><br>
+        <textarea name="description" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box; height:80px;"></textarea>
+
+        <label style="font-size:15px; color:#555;">Image Filename</label><br>
+        <input type="text" name="image" placeholder="e.g. jollof.jpg" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:25px; box-sizing:border-box;">
+
+        <button type="submit" style="width:100%; padding:14px; background-color:#D62828; color:white; border:none; border-radius:8px; font-size:17px; font-weight:bold;">Add Food</button>
+    </form>
+
+</body>
+</html>
