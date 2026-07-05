@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Crave Kitchen Foods</title>
+</head>
+<body>
+    <h1 style="text-align:center; font-size:36px; margin:20px 0 10px;">Our Menu</h1>
+<div style="display:flex; justify-content:center; gap:15px; font-size:16px; flex-wrap:wrap; padding:0 20px;">
+    <a href="/" style="color:#D62828; text-decoration:none;">Home</a>
+    <a href="/add-food" style="color:#D62828; text-decoration:none;">Add Food</a>
+    <a href="/orders" style="color:#D62828; text-decoration:none;">View All Orders</a>
+    <a href="/logout" style="color:#D62828; text-decoration:none;">Logout</a>
+</div>
+<hr style="margin:20px 0;">
+<form method="GET" action="/menu" style="margin:0 20px 20px; display:flex; gap:10px;">
+    <input type="text" name="search" placeholder="Search for a food..." style="font-size:16px; flex:1; padding:12px; border:1px solid #ccc; border-radius:8px;">
+    <button type="submit" style="font-size:16px; padding:12px 20px; background-color:#D62828; color:white; border:none; border-radius:8px;">Search</button>
+</form>
+
+<div style="display:flex; overflow-x:auto; gap:10px; padding:0 20px 20px;">
+    <a href="/menu" style="background-color:#D62828; color:white; padding:10px 20px; border-radius:20px; text-decoration:none; font-size:15px; white-space:nowrap;">All</a>
+    {% for cat in categories %}
+        <a href="/menu?category={{ cat['category'] }}" style="background-color:#f0f0f0; color:#333; padding:10px 20px; border-radius:20px; text-decoration:none; font-size:15px; white-space:nowrap;">{{ cat['category'] }}</a>
+    {% endfor %}
+</div>
+
+    <hr>
+
+    {% for food in foods %}
+<div style="display:flex; align-items:center; gap:15px; padding:15px; border-bottom:1px solid #eee;">
+    {% if food['image'] %}
+    <img src="{{ url_for('static', filename='images/' + food['image']) }}" style="width:90px; height:90px; object-fit:cover; border-radius:12px; flex-shrink:0;">
+    {% endif %}
+    <div style="flex:1;">
+        <h3 style="font-size:20px; margin:0 0 4px;">{{ food['name'] }}</h3>
+        <p style="font-size:16px; color:#666; margin:0;">{{ food['description'] }}</p>
+    </div>
+    <div style="text-align:right; flex-shrink:0;">
+        <p style="font-size:18px; color:#D62828; font-weight:bold; margin:0 0 8px;">₦{{ "{:,.0f}".format(food['price']) }}</p>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:14px; align-items:flex-end;">
+            <a href="/order/{{ food['id'] }}" style="color:white; background-color:#D62828; text-decoration:none; font-weight:bold; padding:6px 14px; border-radius:6px;">Order</a>
+            <div style="display:flex; gap:10px;">
+                <a href="/edit-food/{{ food['id'] }}" style="color:#555; text-decoration:none;">Edit</a>
+                <a href="/delete-food/{{ food['id'] }}" style="color:#999; text-decoration:none;">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    {% if request.args.get('search') %}
+        <p style="font-size:24px;">No foods matched your search "{{ request.args.get('search') }}". Try a different keyword.</p>
+    {% else %}
+        <p>No foods added yet. <a href="/add-food">Add one now</a>.</p>
+    {% endif %}
+{% endfor %}
+
+
+
+</body>
+              </html>
