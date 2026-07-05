@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Order - Crave Kitchen</title>
+</head>
+<body style="margin:0; font-family:sans-serif; text-align:center;">
+
+    <div style="padding:30px 20px;">
+        <h1 style="font-size:26px; margin-bottom:5px;">Review Your Order</h1>
+        <p style="font-size:15px; color:#666; margin-top:0;">Please check everything before confirming.</p>
+
+        <div style="background-color:#fff5f5; border-radius:12px; padding:20px; max-width:600px; width:95%; margin:20px auto; text-align:left; box-sizing:border-box;">
+            <p style="font-size:16px; margin:6px 0;"><strong>Food:</strong> {{ food['name'] }}</p>
+            <p style="font-size:15px; margin:6px 0;"><strong>Quantity:</strong> {{ quantity }}</p>
+            <p style="font-size:17px; color:#D62828; font-weight:bold; margin:10px 0;">Total: ₦{{ "{:,.0f}".format(total_price) }}</p>
+            <hr style="border:none; border-top:1px solid #eee; margin:12px 0;">
+            <p style="font-size:15px; margin:6px 0;"><strong>Name:</strong> {{ customer_name }}</p>
+            <p style="font-size:15px; margin:6px 0;"><strong>Phone:</strong> {{ phone }}</p>
+            <p style="font-size:15px; margin:6px 0;"><strong>Bank Transferred From:</strong> {{ payer_bank }}</p>
+            <hr style="border:none; border-top:1px solid #eee; margin:12px 0;">
+            <p style="font-size:15px; margin:6px 0;"><strong>Street:</strong> {{ street }}</p>
+            <p style="font-size:15px; margin:6px 0;"><strong>Landmark:</strong> {{ landmark }}</p>
+            <p style="font-size:15px; margin:6px 0;"><strong>City:</strong> {{ city }}</p>
+        </div>
+
+        <form method="POST" action="/order/{{ food['id'] }}" style="width:95%; max-width:600px; margin:auto;">
+            <input type="hidden" name="step" value="confirm">
+            <input type="hidden" name="customer_name" value="{{ customer_name }}">
+            <input type="hidden" name="quantity" value="{{ quantity }}">
+            <input type="hidden" name="payer_bank" value="{{ payer_bank }}">
+            <input type="hidden" name="phone" value="{{ phone }}">
+            <input type="hidden" name="street" value="{{ street }}">
+            <input type="hidden" name="landmark" value="{{ landmark }}">
+            <input type="hidden" name="city" value="{{ city }}">
+
+            <button type="submit" style="width:100%; padding:14px; background-color:#D62828; color:white; border:none; border-radius:8px; font-size:17px; font-weight:bold; margin-bottom:12px;">Confirm & Place Order</button>
+        </form>
+
+        <a href="/order/{{ food['id'] }}" style="font-size:15px; color:#D62828; text-decoration:none;">← Edit Details</a>
+    </div>
+
+</body>
+              </html>
