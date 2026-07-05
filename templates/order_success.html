@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Received - Crave Kitchen</title>
+</head>
+<body style="margin:0; font-family:sans-serif; text-align:center;">
+
+    <div style="padding:40px 20px;">
+        <h1 style="font-size:28px; margin-bottom:10px;">Order Received! ⏳</h1>
+        <p style="font-size:17px; color:#333;">Thank you, {{ customer_name }}!</p>
+
+        <div style="background-color:#fff5f5; border-radius:12px; padding:20px; max-width:95%; width:400px; margin:20px auto; text-align:left; box-sizing:border-box;">
+            <p style="font-size:16px; margin:5px 0;">You ordered: <strong>{{ quantity }} x {{ food['name'] }}</strong></p>
+            <p style="font-size:18px; color:#D62828; font-weight:bold; margin:10px 0 0;">Total: ₦{{ "{:,.0f}".format(total_price) }}</p>
+        </div>
+
+        <p style="font-size:15px; color:#a00; max-width:400px; margin:20px auto 5px;">Your order is pending — we'll confirm once payment is verified.</p>
+        <p style="font-size:15px; color:#a00; max-width:400px; margin:0 auto 25px;">We'll send a message to your phone number once your payment has been confirmed.</p>
+
+        <p style="font-size:16px; margin-bottom:12px;">Want to send proof of payment now? Message us directly:</p>
+        <a href="https://wa.me/2347044090654?text=Hello%2C%20I%20just%20placed%20an%20order%20for%20{{ food['name'] }}%20and%20want%20to%20send%20my%20payment%20proof."
+           style="font-size:16px; background-color:#25D366; color:white; padding:12px 25px; text-decoration:none; border-radius:8px; display:inline-block;">
+           Message on WhatsApp
+        </a>
+
+        <br><br>
+        <a href="/menu" style="font-size:16px; color:#D62828; text-decoration:none;">← Back to Menu</a>
+    </div>
+
+    <footer style="margin:20px 20px 20px; padding:25px 20px; background-color:white; border:2px solid #D62828; border-radius:16px; text-align:center;">
+        <h3 style="color:#D62828; font-size:20px; margin-bottom:20px;">Stay Connected</h3>
+        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:15px;">
+            <a href="https://wa.me/2347044090654" style="background-color:white; color:#333; border:1px solid #ccc; text-decoration:none; padding:12px 25px; border-radius:8px; font-size:16px; display:flex; align-items:center; gap:8px;">📱 WhatsApp</a>
+            <a href="https://tiktok.com/@Kennethbuilds1" target="_blank" style="background-color:white; color:#333; border:1px solid #ccc; text-decoration:none; padding:12px 25px; border-radius:8px; font-size:16px; display:flex; align-items:center; gap:8px;">🎥 TikTok</a>
+        </div>
+        <p style="font-size:14px; color:#999;">Powered by CodeWithKenneth</p>
+    </footer>
+
+</body>
+</html>
