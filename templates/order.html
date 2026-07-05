@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order - Crave Kitchen</title>
+</head>
+<body style="margin:0; font-family:sans-serif;">
+
+    <h1 style="text-align:center; font-size:28px; margin:25px 0 5px;">Order: {{ food['name'] }}</h1>
+    <p style="text-align:center; font-size:18px; color:#D62828; font-weight:bold; margin:0 0 10px;">₦{{ "{:,.0f}".format(food['price']) }}</p>
+    <p style="text-align:center; margin:0 0 20px;"><a href="/menu" style="color:#D62828; text-decoration:none; font-size:15px;">← Back to Menu</a></p>
+
+    <hr style="margin:0 0 20px;">
+
+    <div style="background-color:#fff5f5; border-radius:12px; padding:20px; max-width:95%; margin:0 auto 25px; text-align:left;">
+        <h3 style="font-size:18px; margin:0 0 10px;">Payment Instructions</h3>
+        <p style="font-size:15px; color:#444; margin:6px 0;">Please transfer the total amount to:</p>
+        <p style="font-size:15px; margin:6px 0;"><strong>Bank Name:</strong> Opay</p>
+        <p style="font-size:15px; margin:6px 0;"><strong>Account Number:</strong> 7044090654</p>
+        <p style="font-size:15px; margin:6px 0;"><strong>Account Name:</strong> Arebamen Kenneth Oseghale</p>
+        <p style="font-size:13px; color:#777; margin:10px 0 0;">After transferring, fill in your details below so we can confirm your order.</p>
+    </div>
+
+    <form method="POST" style="width:95%; max-width:600px; margin:auto;">
+        <input type="hidden" name="step" value="review">
+
+        <label style="font-size:15px; color:#555;">Your Name</label><br>
+        <input type="text" name="customer_name" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Quantity</label><br>
+        <input type="number" name="quantity" min="1" value="1" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Bank You Transferred From</label><br>
+        <input type="text" name="payer_bank" placeholder="e.g. GTBank, Opay" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">WhatsApp/Phone Number</label><br>
+        <input type="text" name="phone" placeholder="e.g. 08012345678" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Street Address</label><br>
+        <input type="text" name="street" placeholder="e.g. 12 Allen Avenue" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">Landmark</label><br>
+        <input type="text" name="landmark" placeholder="e.g. Opposite First Bank" style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:18px; box-sizing:border-box;">
+
+        <label style="font-size:15px; color:#555;">City/Area</label><br>
+        <input type="text" name="city" placeholder="e.g. Ikeja, Lagos" required style="font-size:16px; width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; margin-top:5px; margin-bottom:25px; box-sizing:border-box;">
+
+        <button type="submit" style="width:100%; padding:14px; background-color:#D62828; color:white; border:none; border-radius:8px; font-size:17px; font-weight:bold;">Review Order</button>
+    </form>
+
+    
+
+</body>
+</html>
